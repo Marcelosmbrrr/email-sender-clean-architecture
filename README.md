@@ -1,67 +1,30 @@
-# Email Microservice
-## Uber Backend Challenge
+# Clean Architecture
 
-![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)
-![Spring](https://img.shields.io/badge/spring-%236DB33F.svg?style=for-the-badge&logo=spring&logoColor=white)
-[![Licence](https://img.shields.io/github/license/Ileriayo/markdown-badges?style=for-the-badge)](./LICENSE)
+Core (Business):
+- entities
+- use case interfaces:
+  interface EmailSenderUseCase
+- exception interfaces:
+  interface EmailServiceException
 
-This project is an API built using **Java, Java Spring, AWS Simple Email Service.**
+Application (Use Case Implementation):
+- services:
+  class EmailSenderService implements interface EmailSenderUseCase;
+  class EmailSenderService <bold>injects interface</bold> EmailSenderGateway
+  <bold>By injecting the Gateway interface, which is an adapter, Spring actually injects the class that implements this interface, which is from Infra.</bold>
 
-The Microservice was developed for my [Youtube Channel](https://youtu.be/eFgeO9M9lLw?si=uyhUXrR-NLEpBW6p), to demonstrate how to solve the [Uber Backend Challenge](https://github.com/uber-archive/coding-challenge-tools/blob/master/coding_challenge.md).
+Controller (Implements Service)
+- controller that implements service:
+    class EmailSenderController injects EmailSenderService
 
-## Table of Contents
+Adapters (Interface for most external layer)
+- interface EmailSenderGateway
 
-- [Installation](#installation)
-- [Configuration](#configuration)
-- [Usage](#usage)
-- [API Endpoints](#api-endpoints)
-- [Database](#database)
-- [Contributing](#contributing)
-
-## Installation
-
-1. Clone the repository:
-
-```bash
-git clone https://github.com/Fernanda-Kipper/desafio-backend-uber.git
-```
-
-2. Install dependencies with Maven
-
-3. Update `application.properties` puting your AWS Credentials
-
-```yaml
-aws.region=us-east-1
-aws.accessKeyId=1111111
-aws.secretKey=111111
-```
-## Usage
-
-1. Start the application with Maven
-2. The API will be accessible at http://localhost:8080
-
-## API Endpoints
-The API provides the following endpoints:
-
-**GET EMAIL**
-```markdown
-POST /api/email/send - Send a e-mail from your sender to the destination
-```
-
-**BODY**
-```json
-{
-  "to": "liveskipperdev@gmail.com",
-  "subject": "teste",
-  "body": "teste"
-}
-```
-
-## Contributing
-
-Contributions are welcome! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request to the repository.
-
-When contributing to this project, please follow the existing code style, [commit conventions](https://www.conventionalcommits.org/en/v1.0.0/), and submit your changes in a separate branch.
+Infra (Implements the Adapter and is inject by EmailSenderService)
+- Concrete implementation of the external e-mail service
+- Different email services will have the same methods, but with their own implementation
+- The EmailSenderService indirectly injects one of these classes by injecting the interface they implement - it looks for the "current e-mail service in use", which is what implements the interface
+- SesEmailSender is the only created, but if it had another one, a way would have to be created to choose which one will be injected into the EmailSenderService
 
 
 
