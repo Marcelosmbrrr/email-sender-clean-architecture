@@ -1,7 +1,5 @@
 # Clean Architecture with E-mail Service
 
-https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html
-
 Core (Business):
 - entities
 - use case interfaces:
@@ -30,6 +28,6 @@ Infra (Implements the Adapter and is inject by EmailSenderService)
 - The EmailSenderService indirectly injects one of these classes by injecting the interface they implement - it looks for the "current e-mail service in use", which is what implements the interface
 - SesEmailSender is the only created, but if it had another one, a way would have to be created to choose which one will be injected into the EmailSenderService
 
-
+https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html
 
 
