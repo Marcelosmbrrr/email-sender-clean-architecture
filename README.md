@@ -18,7 +18,7 @@ Controller (Implements Service)
     - class EmailSenderController injects EmailSenderService
 
 Adapters (Interface between Infra and Application)
-- interface EmailSenderGateway
+- interface EmailSenderAdapter
   - This interface is implemented by the infra classes
   - By this way, which infra class Spring injects into the Application layer is irrelevant
 
