@@ -1,4 +1,4 @@
-# Clean Architecture
+# Clean Architecture with E-mail Service
 
 Core (Business):
 - entities
