@@ -9,13 +9,13 @@ Core (Business):
 
 Application (Use Case Implementation):
 - services:
-  class EmailSenderService implements interface EmailSenderUseCase;
-  class EmailSenderService <bold>injects interface</bold> EmailSenderGateway
-  <bold>By injecting the Gateway interface, which is an adapter, Spring actually injects the class that implements this interface, which is from Infra.</bold>
+  - class EmailSenderService implements interface EmailSenderUseCase;
+  - class EmailSenderService <bold>injects interface</bold> EmailSenderGateway
+  - <bold>By injecting the Gateway interface, which is an adapter, Spring actually injects the class that implements this interface, which is from Infra.</bold>
 
 Controller (Implements Service)
 - controller that implements service:
-    class EmailSenderController injects EmailSenderService
+    - class EmailSenderController injects EmailSenderService
 
 Adapters (Interface for most external layer)
 - interface EmailSenderGateway
