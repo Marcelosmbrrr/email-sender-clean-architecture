@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+// Injects Service that implements the Use Case
+
 @RestController
 @RequestMapping("/api/email")
 public class EmailSenderController {

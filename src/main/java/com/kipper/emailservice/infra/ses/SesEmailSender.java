@@ -4,13 +4,15 @@ package com.kipper.emailservice.infra.ses;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.services.simpleemail.AmazonSimpleEmailService;
 import com.amazonaws.services.simpleemail.model.*;
-import com.kipper.emailservice.adapters.EmailSenderGateway;
+import com.kipper.emailservice.adapters.EmailSenderAdapter;
 import com.kipper.emailservice.core.exceptions.EmailServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+// Implementation of EmailSenderAdapter for AWS e-mail service
+
 @Service
-public class SesEmailSender implements EmailSenderGateway {
+public class SesEmailSender implements EmailSenderAdapter {
 
     private final AmazonSimpleEmailService sesClient;
 

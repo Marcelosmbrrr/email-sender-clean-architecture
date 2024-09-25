@@ -1,5 +1,7 @@
 package com.kipper.emailservice.adapters;
 
-public interface EmailSenderGateway {
+// Contract for ALL infra classes
+
+public interface EmailSenderAdapter {
     void sendEmail(String toEmail, String subject, String body);
 }

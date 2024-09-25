@@ -1,17 +1,21 @@
 package com.kipper.emailservice.application;
 
-import com.kipper.emailservice.adapters.EmailSenderGateway;
+import com.kipper.emailservice.adapters.EmailSenderAdapter;
 import com.kipper.emailservice.core.cases.EmailSenderUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+// Use Case Implementation
+
 @Service
 public class EmailSenderService implements EmailSenderUseCase {
 
-    private final EmailSenderGateway emailSenderGateway;
+    // Spring injects the infra class that implements EmailSenderAdapter
+    // SesEmailSender implements EmailSenderAdapter
+    private final EmailSenderAdapter emailSenderGateway;
 
     @Autowired
-    public EmailSenderService(EmailSenderGateway emailSenderGateway) {
+    public EmailSenderService(EmailSenderAdapter emailSenderGateway) {
         this.emailSenderGateway = emailSenderGateway;
     }
 
